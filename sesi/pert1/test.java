@@ -7,8 +7,8 @@ class test {
     
 
     // Aku bisa edit langsung di dalem
-		Orang o1 = new Orang();
-		o1.name = "I Made Something";
+    Orang o1 = new Orang();
+    o1.name = "I Made Something";
     o1.id = 1;
     
     o1.address.detail = "RT 01, RW 03";
@@ -30,5 +30,5 @@ class test {
     System.out.println(o1.getFullDetail());
     System.out.println(o2.getFullDetail());
     System.out.println(o3.getFullDetail());
-	}
+  }
 }
