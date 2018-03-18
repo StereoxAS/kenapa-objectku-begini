@@ -1,4 +1,5 @@
-public enum CharaJobEnum {
+public enum CharaJobEnum 
+{
   FIGHTER,
   RANGER,
   PALADIN,

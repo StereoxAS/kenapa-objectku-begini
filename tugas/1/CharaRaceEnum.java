@@ -1,6 +1,7 @@
-public enum CharaRaceEnum {
+public enum CharaRaceEnum 
+{
   HUMAN,
-  ELVES,
+  ELF,
   ORC,
   GOBLIN,
   GNOME,
