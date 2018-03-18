@@ -1,105 +1,125 @@
-public class Chara 
+public class Chara
 {
 	private String name;
 	private CharaGender gender;
 	private CharaJobEnum job;
 	private CharaRaceEnum race;
 	private CharaAttributes attributes;
-  
-	public Chara(String name, CharaGender gender, CharaJobEnum job, CharaRaceEnum race) 
-	{
+
+	public Chara(String name, CharaGender gender, CharaJobEnum job, CharaRaceEnum race) {
 	    this.gender = gender;
 	    this.race = race;
 	    this.job = job;
 	    this.name = name;
-	    this.attributes = new CharaAttributes();
+		this.attributes = new CharaAttributes();
+
 	    if (gender.equals(CharaGender.MALE)) //Gender advantages, SJW Alert
 	    {
-	    	attributes.AddStrength(1);
+	    	attributes.addStrength(1);
 	    }
 	    else
 	    {
-	    	attributes.AddInteligence(1);
-	    }	
+	    	attributes.addInteligence(1);
+		}
+
 	    switch(race)
 	    {
-	    case HUMAN:
-	    	attributes.AddVitality(2);
-	    	attributes.AddCharisma(2);
-	    	break;
-	    case ELF:
-	    	attributes.AddInteligence(2);
-	    	attributes.AddCharisma(2);
-	    	break;
-	    case ORC:
-	    	attributes.AddStrength(3);
-	    	attributes.AddDexterity(1);
-	    	break;
-	    case GOBLIN:
-	    	attributes.AddInteligence(2);
-	    	attributes.AddDexterity(2);
-	    	break;
-	    case GNOME:
-	    	attributes.AddDexterity(2);
-	    	attributes.AddWisdom(2);
-	    	break;
-	    case HALFLING:
-	    	attributes.AddDexterity(4);
-	    	break;
-	    case DWARF:
-	    	attributes.AddVitality(3);
-	    	attributes.AddStrength(1);
-	    	break;
-	    case KHAJIIT:
-	    	attributes.AddCharisma(3);
-	    	attributes.AddWisdom(1);
-	    	break;
-	    case ARGONIAN:
-	    	attributes.AddStrength(3);
-	    	attributes.AddVitality(1);
-	    	break;
-	    
+			case HUMAN:
+				attributes.addVitality(2);
+				attributes.addCharisma(2);
+				break;
+			case ELF:
+				attributes.addInteligence(2);
+				attributes.addCharisma(2);
+				break;
+			case ORC:
+				attributes.addStrength(3);
+				attributes.addDexterity(1);
+				break;
+			case GOBLIN:
+				attributes.addInteligence(2);
+				attributes.addDexterity(2);
+				break;
+			case GNOME:
+				attributes.addDexterity(2);
+				attributes.addWisdom(2);
+				break;
+			case HALFLING:
+				attributes.addDexterity(4);
+				break;
+			case DWARF:
+				attributes.addVitality(3);
+				attributes.addStrength(1);
+				break;
+			case KHAJIIT:
+				attributes.addCharisma(3);
+				attributes.addWisdom(1);
+				break;
+			case ARGONIAN:
+				attributes.addStrength(3);
+				attributes.addVitality(1);
+				break;
 	    }
 	}
 
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name)
+	{
 		this.name = name;
 	}
 
-	public CharaGender getGender() {
+	public CharaGender getGender()
+	{
 		return gender;
 	}
 
-	public void setGender(CharaGender gender) {
+	public void setGender(CharaGender gender)
+	{
 		this.gender = gender;
 	}
 
-	public CharaJobEnum getJob() {
+	public CharaJobEnum getJob()
+	{
 		return job;
 	}
 
-	public void setJob(CharaJobEnum job) {
+	public void setJob(CharaJobEnum job)
+	{
 		this.job = job;
 	}
 
-	public CharaRaceEnum getRace() {
+	public CharaRaceEnum getRace()
+	{
 		return race;
 	}
 
-	public void setRace(CharaRaceEnum race) {
+	public void setRace(CharaRaceEnum race)
+	{
 		this.race = race;
 	}
 
-	public CharaAttributes getAttributes() {
+	public CharaAttributes getAttributes()
+	{
 		return attributes;
 	}
 
-	public void setAttributes(CharaAttributes attributes) {
+	public void setAttributes(CharaAttributes attributes)
+	{
 		this.attributes = attributes;
 	}
-	
+
+	public String getCharaDescription()
+	{
+		return
+		"Name   : " + this.name + "\n" +
+		"Gender : " + Utils.capitalizeFirstChar(this.gender.name()) + "\n" +
+		"Job    : " + Utils.capitalizeFirstChar(this.job.name()) + "\n" +
+		"Race   : " + Utils.capitalizeFirstChar(this.race.name()) + "\n" +
+		"Attributes \n" + 
+		this.attributes.getAttributeDescription() + "\n";
+	}
 }

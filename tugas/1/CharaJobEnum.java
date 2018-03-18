@@ -1,14 +1,14 @@
 public enum CharaJobEnum 
 {
-  FIGHTER,
-  RANGER,
-  PALADIN,
-  CLERIC,
-  DRUID,
-  MAGE,
-  THIEF,
-  BARD,
-  SORCERER,
-  MONK,
-  BARBARIAN
+	FIGHTER,
+	RANGER,
+	PALADIN,
+	CLERIC,
+	DRUID,
+	MAGE,
+	THIEF,
+	BARD,
+	SORCERER,
+	MONK,
+	BARBARIAN
 }

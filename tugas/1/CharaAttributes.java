@@ -1,4 +1,4 @@
-public class CharaAttributes 
+public class CharaAttributes
 {
 	private int strength;
 	private int dexterity;
@@ -6,40 +6,40 @@ public class CharaAttributes
 	private int inteligence;
 	private int wisdom;
 	private int charisma;
-  
-	public void AddStrength(int addStrength) 
+
+	public void addStrength(int addStrength)
 	{
 		this.strength += addStrength;
 	}
 
-	public void AddDexterity(int addDexterity) 
+	public void addDexterity(int addDexterity)
 	{
 		this.dexterity += addDexterity;
 	}
-	
-	public void AddVitality(int addVitality) 
+
+	public void addVitality(int addVitality)
 	{
 		this.vitality += addVitality;
 	}
-	
-	public void AddInteligence(int addInteligence) 
+
+	public void addInteligence(int addInteligence)
 	{
 		this.inteligence += addInteligence;
 	}
-	
-	public void AddWisdom(int addWisdom) 
+
+	public void addWisdom(int addWisdom)
 	{
 		this.wisdom += addWisdom;
 	}
-	
-	public void AddCharisma(int addCharisma) 
+
+	public void addCharisma(int addCharisma)
 	{
 		this.charisma += addCharisma;
 	}
 
 
-	public CharaAttributes() 
-	{	
+	public CharaAttributes()
+	{
 		// Default base attributes
     	this.strength = 10;
 	    this.dexterity = 10;
@@ -49,7 +49,7 @@ public class CharaAttributes
 	    this.charisma = 10;
 	}
 
-	public CharaAttributes(int strength, int dexterity, int vitality, int inteligence, int wisdom, int charisma) 
+	public CharaAttributes(int strength, int dexterity, int vitality, int inteligence, int wisdom, int charisma)
 	{
 		this.strength = strength;
 		this.dexterity = dexterity;
@@ -59,111 +59,123 @@ public class CharaAttributes
 		this.charisma = charisma;
 	}
 
-	private String getNegValueErrorMessage(String attribute) {
-		return 
+	private String getNegValueErrorMessage(String attribute)
+	{
+		return
 	    attribute + " must be a non negative integer number, " +
 	    attribute + " unchanged.";
 	}
 
-	public void setStrength(int strength) 
+	public void setStrength(int strength)
 	{
-	    if (strength >= 0) 
+	    if (strength >= 0)
 	    {
 	      this.strength = strength;
 	    }
-	    else 
+	    else
 	    {
 	      System.out.println(getNegValueErrorMessage("Strength"));
 	    }
 	}
 
-	public int getStrength() 
+	public int getStrength()
 	{
 		return this.strength;
 	}
-	
-	public void setDexterity(int dexterity) 
+
+	public void setDexterity(int dexterity)
 	{
-	    if (dexterity >= 0) 
+	    if (dexterity >= 0)
 	    {
 	      this.dexterity = dexterity;
 	    }
-	    else 
+	    else
 	    {
 	      System.out.println(getNegValueErrorMessage("Dexterity"));
 	    }
 	}
-	
-	public int getDexterity() 
+
+	public int getDexterity()
 	{
 	    return this.dexterity;
 	}
-	
-	public void setVitality(int vitality) 
+
+	public void setVitality(int vitality)
 	{
-	    if (vitality >= 0) 
+	    if (vitality >= 0)
 	    {
 	      this.vitality = vitality;
 	    }
-	    else 
+	    else
 	    {
 	      System.out.println(getNegValueErrorMessage("Vitality"));
 	    }
 	}
-	
-	public int getVitality() 
+
+	public int getVitality()
 	{
 	    return this.vitality;
 	}
-	
-	public void setInteligence(int inteligence) 
+
+	public void setInteligence(int inteligence)
 	{
-	    if (inteligence >= 0) 
+	    if (inteligence >= 0)
 	    {
 	      this.inteligence = inteligence;
 	    }
-	    else 
+	    else
 	    {
 	      System.out.println(getNegValueErrorMessage("Inteligence"));
 	    }
 	}
-	
-	public int getInteligence() 
+
+	public int getInteligence()
 	{
 	    return this.inteligence;
 	}
-	
-	public void setWisdom(int wisdom) 
+
+	public void setWisdom(int wisdom)
 	{
-	    if (wisdom >= 0) 
+	    if (wisdom >= 0)
 	    {
 	      this.wisdom = wisdom;
 	    }
-	    else 
+	    else
 	    {
 	      System.out.println(getNegValueErrorMessage("Wisdom"));
 	    }
 	}
-	
-	public int getWisdom() 
+
+	public int getWisdom()
 	{
 	    return this.wisdom;
 	}
-	
-	public void setCharisma(int charisma) 
+
+	public void setCharisma(int charisma)
 	{
-	    if (charisma >= 0) 
+	    if (charisma >= 0)
 	    {
 	      this.charisma = charisma;
 	    }
-	    else 
+	    else
 	    {
 	      System.out.println(getNegValueErrorMessage("Charisma"));
 	    }
 	}
-	
-	public int getCharisma() 
+
+	public int getCharisma()
 	{
 	    return this.charisma;
 	}
-} 
+
+	public String getAttributeDescription()
+	{
+		return
+			"Strength   :" + this.strength + "\n" +
+			"Dexterity  :" + this.dexterity + "\n" +
+			"Vitality   :" + this.vitality + "\n" +
+			"Inteligence:" + this.inteligence + "\n" +
+			"Wisdom     :" + this.wisdom + "\n" +
+			"Charisma   :" + this.charisma;
+	}
+}

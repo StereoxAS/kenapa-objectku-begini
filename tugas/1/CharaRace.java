@@ -1,3 +1,6 @@
+/**
+ * Ini kayaknya nggak dipake dulu
+ */
 public class CharaRace 
 {
 	private CharaRaceEnum HUMAN;
