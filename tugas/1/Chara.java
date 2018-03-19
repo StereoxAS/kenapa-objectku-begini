@@ -1,65 +1,26 @@
 public class Chara
 {
+	private Chara chara;
 	private String name;
 	private CharaGender gender;
 	private CharaJobEnum job;
 	private CharaRaceEnum race;
 	private CharaAttributes attributes;
 
+	public Chara()
+	{
+		this.name = "Undefined";
+	}
+	
 	public Chara(String name, CharaGender gender, CharaJobEnum job, CharaRaceEnum race) {
 	    this.gender = gender;
 	    this.race = race;
 	    this.job = job;
 	    this.name = name;
 		this.attributes = new CharaAttributes();
-
-	    if (gender.equals(CharaGender.MALE)) //Gender advantages, SJW Alert
-	    {
-	    	attributes.addStrength(1);
-	    }
-	    else
-	    {
-	    	attributes.addInteligence(1);
-		}
-
-	    switch(race)
-	    {
-			case HUMAN:
-				attributes.addVitality(2);
-				attributes.addCharisma(2);
-				break;
-			case ELF:
-				attributes.addInteligence(2);
-				attributes.addCharisma(2);
-				break;
-			case ORC:
-				attributes.addStrength(3);
-				attributes.addDexterity(1);
-				break;
-			case GOBLIN:
-				attributes.addInteligence(2);
-				attributes.addDexterity(2);
-				break;
-			case GNOME:
-				attributes.addDexterity(2);
-				attributes.addWisdom(2);
-				break;
-			case HALFLING:
-				attributes.addDexterity(4);
-				break;
-			case DWARF:
-				attributes.addVitality(3);
-				attributes.addStrength(1);
-				break;
-			case KHAJIIT:
-				attributes.addCharisma(3);
-				attributes.addWisdom(1);
-				break;
-			case ARGONIAN:
-				attributes.addStrength(3);
-				attributes.addVitality(1);
-				break;
-	    }
+		CharaClass.setBonusAttributes(job);
+		CharaAttributes.adjustRacialAttributes(race);
+		CharaAttributes.adjustGenderAttributes(gender);
 	}
 
 	public String getName()
@@ -112,14 +73,45 @@ public class Chara
 		this.attributes = attributes;
 	}
 
+	public Chara getChara()
+	{
+		return chara;
+	}
+
+	public void modifyCharaAttribute(String attribute, int value)
+	{
+		switch(attribute)
+		{
+		case "Strength" :
+			CharaAttributes.addStrength(value);
+			break;
+		case "Dexterity" :
+			CharaAttributes.addDexterity(value);;
+			break;
+		case "Vitality" :
+			CharaAttributes.addVitality(value);;
+			break;
+		case "Inteligence" :
+			CharaAttributes.addInteligence(value);;
+			break;
+		case "Wisdom" :
+			CharaAttributes.addWisdom(value);;
+			break;
+		case "Charisma" :
+			CharaAttributes.addCharisma(value);;
+			break;
+		}
+	}
+	
 	public String getCharaDescription()
 	{
 		return
-		"Name   : " + this.name + "\n" +
-		"Gender : " + Utils.capitalizeFirstChar(this.gender.name()) + "\n" +
-		"Job    : " + Utils.capitalizeFirstChar(this.job.name()) + "\n" +
-		"Race   : " + Utils.capitalizeFirstChar(this.race.name()) + "\n" +
-		"Attributes \n" + 
-		this.attributes.getAttributeDescription() + "\n";
+		"\n" + 
+		"Name   	 : " + this.name + "\n" +
+		"Gender 	 : " + Utils.capitalizeFirstChar(this.gender.name()) + "\n" +
+		"Class    : " + Utils.capitalizeFirstChar(this.job.name()) + "\n" +
+		"Race     : " + Utils.capitalizeFirstChar(this.race.name()) + "\n\n" +
+		"Attributes  :\n\n" + this.attributes.getAttributeDescription() + "\n\n" + 
+		"Description : \n\n" + CharaClass.getClassDescription(job);
 	}
 }

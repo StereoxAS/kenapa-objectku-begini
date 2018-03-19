@@ -1,62 +1,121 @@
 public class CharaAttributes
 {
-	private int strength;
-	private int dexterity;
-	private int vitality;
-	private int inteligence;
-	private int wisdom;
-	private int charisma;
+	/*
+	 * Enum Attribute please
+	 */
+	private static int strength;
+	private static int dexterity;
+	private static int vitality;
+	private static int inteligence;
+	private static int wisdom;
+	private static int charisma;
 
-	public void addStrength(int addStrength)
+	public static void adjustRacialAttributes(CharaRaceEnum race)
 	{
-		this.strength += addStrength;
+		switch(race)
+	    {
+			case HUMAN:
+				CharaAttributes.addVitality(2);
+				CharaAttributes.addCharisma(2);
+				break;
+			case ELF:
+				CharaAttributes.addInteligence(2);
+				CharaAttributes.addCharisma(2);
+				break;
+			case ORC:
+				CharaAttributes.addStrength(3);
+				CharaAttributes.addDexterity(1);
+				break;
+			case GOBLIN:
+				CharaAttributes.addInteligence(2);
+				CharaAttributes.addDexterity(2);
+				break;
+			case GNOME:
+				CharaAttributes.addDexterity(2);
+				CharaAttributes.addWisdom(2);
+				break;
+			case HALFLING:
+				CharaAttributes.addDexterity(4);
+				break;
+			case DWARF:
+				CharaAttributes.addVitality(3);
+				CharaAttributes.addStrength(1);
+				break;
+			case KHAJIIT:
+				CharaAttributes.addCharisma(3);
+				CharaAttributes.addWisdom(1);
+				break;
+			case ARGONIAN:
+				CharaAttributes.addStrength(3);
+				CharaAttributes.addVitality(1);
+				break;
+	    }
+		//System.out.println("Racial bonuses applied.");
+	}
+	
+	public static void adjustGenderAttributes(CharaGender gender)
+	{
+		if (gender.equals(CharaGender.MALE)) //Gender advantages, SJW Alert
+	    {
+			CharaAttributes.addStrength(1);
+	    }
+	    else
+	    {
+	    	CharaAttributes.addInteligence(1);
+		}
+		//System.out.println("Gender bonuses applied.");
+	}
+	
+	public static void addStrength(int addStrength)
+	{
+		strength += addStrength;
 	}
 
-	public void addDexterity(int addDexterity)
+	public static void addDexterity(int addDexterity)
 	{
-		this.dexterity += addDexterity;
+		dexterity += addDexterity;
 	}
 
-	public void addVitality(int addVitality)
+	public static void addVitality(int addVitality)
 	{
-		this.vitality += addVitality;
+		vitality += addVitality;
 	}
 
-	public void addInteligence(int addInteligence)
+	public static void addInteligence(int addInteligence)
 	{
-		this.inteligence += addInteligence;
+		inteligence += addInteligence;
 	}
 
-	public void addWisdom(int addWisdom)
+	public static void addWisdom(int addWisdom)
 	{
-		this.wisdom += addWisdom;
+		wisdom += addWisdom;
 	}
 
-	public void addCharisma(int addCharisma)
+	public static void addCharisma(int addCharisma)
 	{
-		this.charisma += addCharisma;
+		charisma += addCharisma;
 	}
 
 
 	public CharaAttributes()
 	{
 		// Default base attributes
-    	this.strength = 10;
-	    this.dexterity = 10;
-	    this.vitality = 10;
-	    this.inteligence = 10;
-	    this.wisdom = 10;
-	    this.charisma = 10;
+    	CharaAttributes.strength = 10;
+	    CharaAttributes.dexterity = 10;
+	    CharaAttributes.vitality = 10;
+	    CharaAttributes.inteligence = 10;
+	    CharaAttributes.wisdom = 10;
+	    CharaAttributes.charisma = 10;
 	}
 
 	public CharaAttributes(int strength, int dexterity, int vitality, int inteligence, int wisdom, int charisma)
 	{
-		this.strength = strength;
-		this.dexterity = dexterity;
-		this.vitality = vitality;
-		this.inteligence = inteligence;
-		this.wisdom = wisdom;
-		this.charisma = charisma;
+		CharaAttributes.strength = strength;
+		CharaAttributes.dexterity = dexterity;
+		CharaAttributes.vitality = vitality;
+		CharaAttributes.inteligence = inteligence;
+		CharaAttributes.wisdom = wisdom;
+		CharaAttributes.charisma = charisma;
 	}
 
 	private String getNegValueErrorMessage(String attribute)
@@ -70,7 +129,7 @@ public class CharaAttributes
 	{
 	    if (strength >= 0)
 	    {
-	      this.strength = strength;
+	      CharaAttributes.strength = strength;
 	    }
 	    else
 	    {
@@ -80,14 +139,14 @@ public class CharaAttributes
 
 	public int getStrength()
 	{
-		return this.strength;
+		return CharaAttributes.strength;
 	}
 
 	public void setDexterity(int dexterity)
 	{
 	    if (dexterity >= 0)
 	    {
-	      this.dexterity = dexterity;
+	      CharaAttributes.dexterity = dexterity;
 	    }
 	    else
 	    {
@@ -97,14 +156,14 @@ public class CharaAttributes
 
 	public int getDexterity()
 	{
-	    return this.dexterity;
+	    return CharaAttributes.dexterity;
 	}
 
 	public void setVitality(int vitality)
 	{
 	    if (vitality >= 0)
 	    {
-	      this.vitality = vitality;
+	      CharaAttributes.vitality = vitality;
 	    }
 	    else
 	    {
@@ -114,14 +173,14 @@ public class CharaAttributes
 
 	public int getVitality()
 	{
-	    return this.vitality;
+	    return CharaAttributes.vitality;
 	}
 
 	public void setInteligence(int inteligence)
 	{
 	    if (inteligence >= 0)
 	    {
-	      this.inteligence = inteligence;
+	      CharaAttributes.inteligence = inteligence;
 	    }
 	    else
 	    {
@@ -131,14 +190,14 @@ public class CharaAttributes
 
 	public int getInteligence()
 	{
-	    return this.inteligence;
+	    return CharaAttributes.inteligence;
 	}
 
 	public void setWisdom(int wisdom)
 	{
 	    if (wisdom >= 0)
 	    {
-	      this.wisdom = wisdom;
+	      CharaAttributes.wisdom = wisdom;
 	    }
 	    else
 	    {
@@ -148,14 +207,14 @@ public class CharaAttributes
 
 	public int getWisdom()
 	{
-	    return this.wisdom;
+	    return CharaAttributes.wisdom;
 	}
 
 	public void setCharisma(int charisma)
 	{
 	    if (charisma >= 0)
 	    {
-	      this.charisma = charisma;
+	      CharaAttributes.charisma = charisma;
 	    }
 	    else
 	    {
@@ -165,17 +224,17 @@ public class CharaAttributes
 
 	public int getCharisma()
 	{
-	    return this.charisma;
+	    return CharaAttributes.charisma;
 	}
 
 	public String getAttributeDescription()
 	{
 		return
-			"Strength   :" + this.strength + "\n" +
-			"Dexterity  :" + this.dexterity + "\n" +
-			"Vitality   :" + this.vitality + "\n" +
-			"Inteligence:" + this.inteligence + "\n" +
-			"Wisdom     :" + this.wisdom + "\n" +
-			"Charisma   :" + this.charisma;
+			"Strength   :" + CharaAttributes.strength + "\n" +
+			"Dexterity  :" + CharaAttributes.dexterity + "\n" +
+			"Vitality   :" + CharaAttributes.vitality + "\n" +
+			"Inteligence:" + CharaAttributes.inteligence + "\n" +
+			"Wisdom     :" + CharaAttributes.wisdom + "\n" +
+			"Charisma   :" + CharaAttributes.charisma;
 	}
 }
