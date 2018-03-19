@@ -1,5 +1,3 @@
-package pbo;
-
 public class Pembelian 
 {
 	private static String check;

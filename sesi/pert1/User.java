@@ -1,37 +1,39 @@
-package pbo;
-
-public class User {
+public class User 
+{
 	private String UserName;
 	private String UserPass;
 
-	User(){
+	User()
+	{
 		this.UserName="-";
 		this.UserPass="-";
 	}
-	User(String UserName,String UserPass){
+	
+	User(String UserName,String UserPass)
+	{
 		this.UserName= UserName;
 		this.UserPass= UserPass;
 	}
-
-	public String getUserName() {
+	
+	public String getUserName() 
+	{
 		return UserName;
 	}
-
-	public void setUserName(String userName) {
-		if(userName==null) {
+	
+	public void setUserName(String userName) 
+	{
+		if(userName==null) 
+		{
 			System.out.println("Please input your username!");
 		}
-		this.UserName = userName;
-		
+		this.UserName = userName;		
 	}
-
-	public String getUserPass() {
+	public String getUserPass() 
+	{
 		return UserPass;
 	}
-
-	public void setUserPass(String userPass) {
+	public void setUserPass(String userPass) 
+	{
 		UserPass = userPass;
 	}
-	
-	
 }

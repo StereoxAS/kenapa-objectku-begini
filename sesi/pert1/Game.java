@@ -1,12 +1,12 @@
-package pbo;
-
-public class Game {
+public class Game 
+{
 		String GameName;
 		String Developer;
 		int Price;
 		String Category;
 		
-		Game(){
+		Game()
+		{
 			this.GameName="-";
 			this.Developer="-";
 			this.Price=0;
@@ -14,7 +14,8 @@ public class Game {
 		}
 		
 		
-		public Game(String GameName, String Developer, int Price, String Category) {
+		public Game(String GameName, String Developer, int Price, String Category) 
+		{
 			this.GameName=GameName;
 			this.Developer=Developer;
 			this.Price=Price;
@@ -54,5 +55,3 @@ public class Game {
 				System.out.println("Game Developer: "+game.getDeveloper());	
 		}		
 }
-
-
