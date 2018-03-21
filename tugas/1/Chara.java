@@ -1,26 +1,26 @@
 public class Chara
 {
-	private Chara chara;
 	private String name;
 	private CharaGender gender;
-	private CharaJobEnum job;
-	private CharaRaceEnum race;
-	private CharaAttributes attributes;
+	private CharaJob job;
+	private CharaRace race;
+	private CharaAttributes baseAttributes;
+	private CharaAttributes genderAttributes;
+	private CharaAttributes jobAttributes;
+	private CharaAttributes raceAttributes;
+	private CharaHMS charaHMS;
 
-	public Chara()
+	public Chara(String name, CharaGender gender, CharaJob job, CharaRace race)
 	{
-		this.name = "Undefined";
-	}
-	
-	public Chara(String name, CharaGender gender, CharaJobEnum job, CharaRaceEnum race) {
-	    this.gender = gender;
-	    this.race = race;
-	    this.job = job;
-	    this.name = name;
-		this.attributes = new CharaAttributes();
-		CharaClass.setBonusAttributes(job);
-		CharaAttributes.adjustRacialAttributes(race);
-		CharaAttributes.adjustGenderAttributes(gender);
+		this.gender = gender;
+		this.race = race;
+		this.job = job;
+		this.name = name;
+		this.baseAttributes = new CharaAttributes(10);
+		this.genderAttributes = CharaGender.generateAttributeBonus(gender);
+		this.jobAttributes = CharaJob.generateAttributeBonus(job);
+		this.raceAttributes = CharaRace.generateAttributeBonus(race);
+		this.charaHMS = CharaHMS.generateCharaHMS(this);
 	}
 
 	public String getName()
@@ -41,77 +41,88 @@ public class Chara
 	public void setGender(CharaGender gender)
 	{
 		this.gender = gender;
+		this.genderAttributes = CharaGender.generateAttributeBonus(gender);
 	}
 
-	public CharaJobEnum getJob()
+	public CharaJob getJob()
 	{
 		return job;
 	}
 
-	public void setJob(CharaJobEnum job)
+	public void setJob(CharaJob job)
 	{
 		this.job = job;
+		this.jobAttributes = CharaJob.generateAttributeBonus(job);
 	}
 
-	public CharaRaceEnum getRace()
+	public CharaRace getRace()
 	{
 		return race;
 	}
 
-	public void setRace(CharaRaceEnum race)
+	public void setRace(CharaRace race)
 	{
 		this.race = race;
+		this.raceAttributes = CharaRace.generateAttributeBonus(race);
 	}
 
-	public CharaAttributes getAttributes()
+	public CharaAttributes getTotalAttributes()
 	{
-		return attributes;
+		return baseAttributes
+			.sumWith(raceAttributes)
+			.sumWith(genderAttributes)
+			.sumWith(jobAttributes);
 	}
 
-	public void setAttributes(CharaAttributes attributes)
+	public CharaAttributes getBonusAttributes()
 	{
-		this.attributes = attributes;
-	}
-
-	public Chara getChara()
-	{
-		return chara;
-	}
-
-	public void modifyCharaAttribute(String attribute, int value)
-	{
-		switch(attribute)
-		{
-		case "Strength" :
-			CharaAttributes.addStrength(value);
-			break;
-		case "Dexterity" :
-			CharaAttributes.addDexterity(value);;
-			break;
-		case "Vitality" :
-			CharaAttributes.addVitality(value);;
-			break;
-		case "Inteligence" :
-			CharaAttributes.addInteligence(value);;
-			break;
-		case "Wisdom" :
-			CharaAttributes.addWisdom(value);;
-			break;
-		case "Charisma" :
-			CharaAttributes.addCharisma(value);;
-			break;
-		}
+		return raceAttributes
+			.sumWith(genderAttributes)
+			.sumWith(jobAttributes);
 	}
 	
+	public CharaHMS getCharaHMS()
+	{
+		return charaHMS;
+	}
+
+	public CharaAttributes getBaseAttributes()
+	{
+		return this.baseAttributes;
+	}
+
+	public void setBaseAttributes(CharaAttributes attributes)
+	{
+		this.baseAttributes = attributes;
+	}
+
 	public String getCharaDescription()
 	{
 		return
-		"\n" + 
-		"Name   	 : " + this.name + "\n" +
-		"Gender 	 : " + Utils.capitalizeFirstChar(this.gender.name()) + "\n" +
-		"Class    : " + Utils.capitalizeFirstChar(this.job.name()) + "\n" +
-		"Race     : " + Utils.capitalizeFirstChar(this.race.name()) + "\n\n" +
-		"Attributes  :\n\n" + this.attributes.getAttributeDescription() + "\n\n" + 
-		"Description : \n\n" + CharaClass.getClassDescription(job);
+		"[Character Overview]\n\n" +
+		"Name		: " + this.name + "\n" +
+		"Gender		: " + CharaGender.getName(this.gender) + "\n" +
+		"Job		: " + CharaJob.getName(this.job) + "\n" +
+		"Race		: " + CharaRace.getName(this.race) + "\n\n" +
+		charaHMS.getHMSDetails() + 
+		"\n[Total Attributes]\n" + 
+		this.getTotalAttributes().getAttributeDescription() + "\n";
+	}
+
+	public String getAtributeDetails()
+	{
+		return
+		"Total Attributes	: \n" +
+		this.getTotalAttributes().getAttributeDescription() + "\n\n" +
+		"Base Attributes		: \n" +
+		this.baseAttributes.getAttributeDescription() + "\n\n" +
+		"Total Bonus Attribute	: \n" +
+		this.getBonusAttributes().getAttributeDescriptionIgnoreZero() + "\n\n" +
+		"Class Bonus		: \n" +
+		jobAttributes.getAttributeDescriptionIgnoreZero() + "\n\n" +
+		"Racial Bonus		: \n" +
+		raceAttributes.getAttributeDescriptionIgnoreZero() + "\n\n" +
+		"Gender Bonus		: \n" +
+		genderAttributes.getAttributeDescriptionIgnoreZero() + "\n";
 	}
 }
